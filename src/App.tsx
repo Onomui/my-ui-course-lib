@@ -131,6 +131,17 @@ function App() {
           </div>
 
           <div className="time-card">
+            <h2>Small time step</h2>
+
+            <TimePicker
+              label="Маленький шаг"
+              min="00:00"
+              max="23:00"
+              minuteStep={1}
+            />
+          </div>
+
+          <div className="time-card">
             <h2>Disabled</h2>
 
             <TimePicker
