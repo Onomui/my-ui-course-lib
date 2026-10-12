@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './App.css'
 import Button from './components/Button'
 import TimePicker from './components/TimePicker'
@@ -6,6 +6,9 @@ import TimePicker from './components/TimePicker'
 function App() {
   const [meetingTime, setMeetingTime] =
     useState<string | null>('12:30')
+
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const linkRef = useRef<HTMLAnchorElement>(null)
 
   return (
     <main className="page">
@@ -74,6 +77,57 @@ function App() {
             </Button>
             <Button variant="text" size="L" disabled>
               Кнопка
+            </Button>
+          </div>
+
+          <h2>Polymorphism & Ref</h2>
+
+          <div className="buttons-row">
+            <Button
+              as="button"
+              ref={buttonRef}
+              variant="fill"
+              size="M"
+            >
+              HTML Button
+            </Button>
+
+            <Button
+              as="a"
+              ref={linkRef}
+              href="https://react.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outline"
+              size="M"
+            >
+              HTML Link
+            </Button>
+
+            <Button
+              variant="text"
+              size="M"
+              onClick={() => buttonRef.current?.focus()}
+            >
+              Фокус на кнопку
+            </Button>
+
+            <Button
+              variant="text"
+              size="M"
+              onClick={() => linkRef.current?.focus()}
+            >
+              Фокус на ссылку
+            </Button>
+
+            <Button
+              as="a"
+              href="https://react.dev"
+              variant="outline"
+              size="M"
+              disabled
+            >
+              Disabled Link
             </Button>
           </div>
         </div>

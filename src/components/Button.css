@@ -9,6 +9,7 @@
   font-weight: 600;
   line-height: 1;
   white-space: nowrap;
+  text-decoration: none;
   cursor: pointer;
   transition:
     background-color 0.15s ease,
@@ -42,15 +43,16 @@
   color: #ffffff;
 }
 
-.button--fill:hover:not(:disabled) {
+.button--fill:hover:not(:disabled):not([aria-disabled='true']) {
   background-color: #2e2e33;
 }
 
-.button--fill:active:not(:disabled) {
+.button--fill:active:not(:disabled):not([aria-disabled='true']) {
   background-color: #000000;
 }
 
-.button--fill:disabled {
+.button--fill:disabled,
+.button--fill[aria-disabled='true'] {
   background-color: #aaaaad;
   color: #ffffff;
 }
@@ -61,15 +63,16 @@
   color: #202024;
 }
 
-.button--outline:hover:not(:disabled) {
+.button--outline:hover:not(:disabled):not([aria-disabled='true']) {
   background-color: #f4f4f5;
 }
 
-.button--outline:active:not(:disabled) {
+.button--outline:active:not(:disabled):not([aria-disabled='true']) {
   background-color: #e3e3e6;
 }
 
-.button--outline:disabled {
+.button--outline:disabled,
+.button--outline[aria-disabled='true'] {
   background-color: #ffffff;
   border-color: #c7c7ca;
   color: #aaaaad;
@@ -80,19 +83,26 @@
   color: #202024;
 }
 
-.button--text:hover:not(:disabled) {
+.button--text:hover:not(:disabled):not([aria-disabled='true']) {
   background-color: #ebebee;
 }
 
-.button--text:active:not(:disabled) {
-  background-color: #ddddE3;
+.button--text:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: #dddde3;
 }
 
-.button--text:disabled {
+.button--text:disabled,
+.button--text[aria-disabled='true'] {
   background-color: transparent;
   color: #aaaaad;
 }
 
-.button:disabled {
+.button:disabled,
+.button[aria-disabled='true'] {
   cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: 3px solid #8080a0;
+  outline-offset: 3px;
 }
