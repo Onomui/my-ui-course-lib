@@ -22,6 +22,45 @@
   margin-bottom: 24px;
 }
 
+.theme-section {
+  margin-top: 70px;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+}
+
+.theme-card {
+  padding: 24px;
+  border: 1px solid #dddddf;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+.theme-card h2 {
+  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.theme-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.theme-inner {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #dddddf;
+  border-radius: 12px;
+  background-color: #f7f7f8;
+}
+
 .time-section {
   margin-top: 70px;
   padding-bottom: 240px;
@@ -59,6 +98,7 @@
     padding: 20px;
   }
 
+  .theme-grid,
   .time-examples {
     grid-template-columns: 1fr;
   }

@@ -1,5 +1,11 @@
 import type { ReactElement } from 'react'
-import './Button.css'
+import {
+  buttonBase,
+  buttonSizes,
+  buttonVariants,
+} from './Button.css.ts'
+import { defaultThemeClass } from '../theme/theme.css.ts'
+import { useThemeTokens } from '../theme/useThemeTokens'
 import type {
   ButtonAsButtonProps,
   ButtonAsLinkProps,
@@ -12,11 +18,13 @@ function getButtonClasses(
   variant: ButtonVariant,
   size: ButtonSize,
   className: string,
+  useDefaultTheme: boolean,
 ) {
   return [
-    'button',
-    `button--${variant}`,
-    `button--${size.toLowerCase()}`,
+    useDefaultTheme ? defaultThemeClass : '',
+    buttonBase,
+    buttonVariants[variant],
+    buttonSizes[size],
     className,
   ]
     .filter(Boolean)
@@ -26,6 +34,9 @@ function getButtonClasses(
 function Button(props: ButtonAsButtonProps): ReactElement
 function Button(props: ButtonAsLinkProps): ReactElement
 function Button(props: ButtonProps): ReactElement {
+  const activeTheme = useThemeTokens()
+  const useDefaultTheme = activeTheme === null
+
   if (props.as === 'a') {
     const {
       as,
@@ -50,7 +61,12 @@ function Button(props: ButtonProps): ReactElement {
         href={disabled ? undefined : href}
         tabIndex={disabled ? -1 : tabIndex}
         aria-disabled={disabled || undefined}
-        className={getButtonClasses(variant, size, className)}
+        className={getButtonClasses(
+          variant,
+          size,
+          className,
+          useDefaultTheme,
+        )}
         onClick={(event) => {
           if (disabled) {
             event.preventDefault()
@@ -84,7 +100,12 @@ function Button(props: ButtonProps): ReactElement {
       {...rest}
       ref={ref}
       type={type}
-      className={getButtonClasses(variant, size, className)}
+      className={getButtonClasses(
+        variant,
+        size,
+        className,
+        useDefaultTheme,
+      )}
     >
       {children}
     </button>

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import './App.css'
 import Button from './components/Button'
 import TimePicker from './components/TimePicker'
+import { ThemeContext } from './theme/ThemeContext'
 
 function App() {
   const [meetingTime, setMeetingTime] =
@@ -17,67 +18,31 @@ function App() {
 
         <div className="buttons-demo">
           <div className="buttons-row">
-            <Button variant="fill" size="S">
-              Кнопка
-            </Button>
-            <Button variant="fill" size="M">
-              Кнопка
-            </Button>
-            <Button variant="fill" size="L">
-              Кнопка
-            </Button>
+            <Button variant="fill" size="S">Кнопка</Button>
+            <Button variant="fill" size="M">Кнопка</Button>
+            <Button variant="fill" size="L">Кнопка</Button>
 
-            <Button variant="outline" size="S">
-              Кнопка
-            </Button>
-            <Button variant="outline" size="M">
-              Кнопка
-            </Button>
-            <Button variant="outline" size="L">
-              Кнопка
-            </Button>
+            <Button variant="outline" size="S">Кнопка</Button>
+            <Button variant="outline" size="M">Кнопка</Button>
+            <Button variant="outline" size="L">Кнопка</Button>
 
-            <Button variant="text" size="S">
-              Кнопка
-            </Button>
-            <Button variant="text" size="M">
-              Кнопка
-            </Button>
-            <Button variant="text" size="L">
-              Кнопка
-            </Button>
+            <Button variant="text" size="S">Кнопка</Button>
+            <Button variant="text" size="M">Кнопка</Button>
+            <Button variant="text" size="L">Кнопка</Button>
           </div>
 
           <div className="buttons-row">
-            <Button variant="fill" size="S" disabled>
-              Кнопка
-            </Button>
-            <Button variant="fill" size="M" disabled>
-              Кнопка
-            </Button>
-            <Button variant="fill" size="L" disabled>
-              Кнопка
-            </Button>
+            <Button variant="fill" size="S" disabled>Кнопка</Button>
+            <Button variant="fill" size="M" disabled>Кнопка</Button>
+            <Button variant="fill" size="L" disabled>Кнопка</Button>
 
-            <Button variant="outline" size="S" disabled>
-              Кнопка
-            </Button>
-            <Button variant="outline" size="M" disabled>
-              Кнопка
-            </Button>
-            <Button variant="outline" size="L" disabled>
-              Кнопка
-            </Button>
+            <Button variant="outline" size="S" disabled>Кнопка</Button>
+            <Button variant="outline" size="M" disabled>Кнопка</Button>
+            <Button variant="outline" size="L" disabled>Кнопка</Button>
 
-            <Button variant="text" size="S" disabled>
-              Кнопка
-            </Button>
-            <Button variant="text" size="M" disabled>
-              Кнопка
-            </Button>
-            <Button variant="text" size="L" disabled>
-              Кнопка
-            </Button>
+            <Button variant="text" size="S" disabled>Кнопка</Button>
+            <Button variant="text" size="M" disabled>Кнопка</Button>
+            <Button variant="text" size="L" disabled>Кнопка</Button>
           </div>
 
           <h2>Polymorphism & Ref</h2>
@@ -89,7 +54,7 @@ function App() {
               variant="fill"
               size="M"
             >
-              HTML Button
+              Кнопка
             </Button>
 
             <Button
@@ -101,7 +66,7 @@ function App() {
               variant="outline"
               size="M"
             >
-              HTML Link
+              Кнопка
             </Button>
 
             <Button
@@ -109,7 +74,7 @@ function App() {
               size="M"
               onClick={() => buttonRef.current?.focus()}
             >
-              Фокус на кнопку
+              Кнопка
             </Button>
 
             <Button
@@ -117,7 +82,7 @@ function App() {
               size="M"
               onClick={() => linkRef.current?.focus()}
             >
-              Фокус на ссылку
+              Кнопка
             </Button>
 
             <Button
@@ -127,9 +92,73 @@ function App() {
               size="M"
               disabled
             >
-              Disabled Link
+              Кнопка
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="theme-section">
+        <h1>ThemeContext</h1>
+
+        <div className="theme-grid">
+          <div className="theme-card">
+            <h2>Default theme</h2>
+
+            <div className="theme-buttons">
+              <Button size="S">Кнопка</Button>
+              <Button variant="outline" size="M">Кнопка</Button>
+              <Button variant="text" size="L">Кнопка</Button>
+              <Button size="S" disabled>Кнопка</Button>
+            </div>
+          </div>
+
+          <ThemeContext
+            tokens={{
+              buttonSmallPaddingX: '40px',
+              buttonMediumRadius: '24px',
+
+              buttonFillBackground: '#6d28d9',
+              buttonFillHoverBackground: '#7c3aed',
+              buttonFillActiveBackground: '#4c1d95',
+              buttonFillDisabledBackground: '#b8a1df',
+
+              buttonOutlineBorder: '#6d28d9',
+              buttonOutlineText: '#6d28d9',
+              buttonOutlineHoverBackground: '#ede9fe',
+
+              buttonTextText: '#6d28d9',
+              buttonTextHoverBackground: '#ede9fe',
+            }}
+          >
+            <div className="theme-card">
+              <h2>Custom theme</h2>
+
+              <div className="theme-buttons">
+                <Button size="S">Кнопка</Button>
+                <Button variant="outline" size="M">Кнопка</Button>
+                <Button variant="text" size="L">Кнопка</Button>
+                <Button size="S" disabled>Кнопка</Button>
+              </div>
+
+              <ThemeContext
+                tokens={{
+                  buttonFillBackground: '#059669',
+                  buttonFillHoverBackground: '#047857',
+                  buttonFillActiveBackground: '#065f46',
+                }}
+              >
+                <div className="theme-inner">
+                  <h2>Nested theme</h2>
+
+                  <div className="theme-buttons">
+                    <Button size="S">Кнопка</Button>
+                    <Button variant="outline" size="M">Кнопка</Button>
+                  </div>
+                </div>
+              </ThemeContext>
+            </div>
+          </ThemeContext>
         </div>
       </section>
 
@@ -155,9 +184,7 @@ function App() {
               onChange={setMeetingTime}
             />
 
-            <p>
-              Выбрано: {meetingTime ?? 'ничего'}
-            </p>
+            <p>Выбрано: {meetingTime ?? 'ничего'}</p>
           </div>
 
           <div className="time-card">
